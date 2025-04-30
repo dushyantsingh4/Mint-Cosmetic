@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type="text"],input[type="password"]{
+input[type="text"],
+input[type="password"] {
     @apply outline-none border-0 bg-transparent focus:outline-none focus:ring-0;
 }
 
-.form-control{
+.form-control {
     @apply border border-stone-300 w-full;
 }
 
@@ -14,43 +15,44 @@ select {
     @apply outline-none border border-stone-300 bg-transparent focus:outline-none focus:ring-0 focus:border-primary appearance-none;
 }
 
-.nav{
-    @apply block w-full max-w-screen-lg px-4 py-2  bg-white bg-opacity-90 fixed top-3 shadow lg:px-8 lg:py-3 backdrop-blur-lg backdrop-saturate-150 z-[9999];
+.nav {
+    @apply block w-full max-w-screen-lg px-4 py-2 bg-white bg-opacity-90 fixed top-3 shadow lg:px-8 lg:py-3 backdrop-blur-lg backdrop-saturate-150 z-[9999];
     left: 50%;
     transform: translateX(-50%);
 }
 
-.nav-alt{
+.nav-alt {
     @apply relative mt-2 block w-full max-w-screen-lg px-4 py-2 bg-white bg-opacity-90 shadow lg:px-8 lg:py-3 backdrop-blur-lg backdrop-saturate-150 z-[9999];
     left: 50%;
     transform: translateX(-50%);
 }
-.nav-head{
+
+.nav-head {
     @apply mr-4 block cursor-pointer py-1.5 text-base text-slate-800 font-semibold;
 }
 
-.nav-link{
+.nav-link {
     @apply flex items-center;
 }
 
-.nav-link>span{
+.nav-link>span {
     @apply text-sm mx-2;
 }
 
 .products-swiper {
     padding: 0 10rem;
-    /* height: 250px; */
 }
 
 .selected-category {
     @apply border-b-primary border-b-2 font-semibold py-6 px-4;
 }
-  
+
 .not-selected-category {
     @apply border-b-transparent border-b-2 font-semibold py-6 px-4;
 }
 
-.swiper-button-next, .swiper-button-prev{
+.swiper-button-next,
+.swiper-button-prev {
     transform: translateY(-50%);
     --swiper-navigation-color: #a8a29e;
     @apply text-emerald-500 hover:text-stone-600 py-10 px-4 block border border-stone-400 bg-stone-200 opacity-30 hover:opacity-65 transition-all duration-75 ease-in h-1 w-8;
@@ -60,89 +62,107 @@ select {
     left: 0px !important;
     @apply rounded-r-lg;
 }
-.swiper-button-next{
+
+.swiper-button-next {
     right: 0px !important;
     @apply rounded-l-lg;
 }
+
 .swiper-wrapper {
     transform-style: preserve-3d;
 }
 
-.swiper-slide{
+.swiper-slide {
     @apply relative bg-sky-50 p-1 h-full border-2 border-stone-200 rounded-lg hover:border-primary hover:shadow-md mb-8 overflow-hidden transition-all duration-100 ease-in-out;
 }
-.swiper-slide-img-cont{
+
+.swiper-slide-img-cont {
     @apply h-40;
 }
-.swiper-slide img{
+
+.swiper-slide img {
     @apply h-full w-full object-cover rounded;
 }
-.actual-price{
+
+.actual-price {
     text-decoration: line-through;
     @apply text-xs mx-2;
 }
-.product-menu{
+
+.product-menu {
     @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4;
 }
-.product-card{
+
+.product-card {
     @apply rounded overflow-hidden border bg-white border-slate-300 shadow-sm p-1;
 }
-.product-card-img{
-    @apply overflow-hidden rounded;
+
+.product-card-img {
+    @apply overflow-hidden rounded relative mb-2;
 }
-.add-to-cart-btn{
+
+.add-to-cart-btn {
     @apply px-4 py-2 text-sm font-medium text-white bg-emerald-500 rounded hover:bg-emerald-600 transition;
 }
-.product-v-d-link{
+
+.product-v-d-link {
     @apply inline-block px-4 py-2 text-sm font-medium text-white bg-cyan-600 rounded hover:bg-cyan-700 transition;
 }
-.cart-count{
+
+.cart-count {
     @apply absolute -top-2 -right-8 bg-primary text-white text-xs font-bold px-1.5 py-0.5 rounded-full
 }
 
-.cart-item{
+.cart-item {
     @apply p-2 border border-stone-300 rounded my-2 shadow overflow-hidden flex gap-4
 }
-.cart-img-container{
+
+.cart-img-container {
     @apply w-36 h-40 object-contain;
 }
 
-.cart-img-container>img{
+.cart-img-container>img {
     @apply object-contain h-full rounded overflow-hidden
 }
 
-.item-details-container{
+.item-details-container {
     @apply flex justify-between items-center w-full;
 }
 
-.btn-qty-add, .btn-qty-sub{
+.btn-qty-add,
+.btn-qty-sub {
     @apply px-1 py-0.5 rounded-sm mx-1 my-1 border text-stone-600 hover:text-primary text-base
 }
-.btn-qty-rmv{
+
+.btn-qty-rmv {
     @apply px-1 py-0.5 rounded mx-2 my-1 border bg-stone-100 hover:bg-red-500 text-red-600 hover:text-red-100 hover:text-red-100 text-sm transition-all duration-500
 }
-.link-cont-shop{
+
+.link-cont-shop {
     @apply inline-block p-2 bg-primary rounded text-white
 }
-.link-proceed{
+
+.link-proceed {
     @apply inline-block w-full bg-priDark text-white text-center rounded mt-4 py-2 mx-auto
 }
 
-.search-menu{
+.search-menu {
     @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-2
 }
-.text-gold{
+
+.text-gold {
     color: #EFBF04;
 }
 
-.color-show{
+.color-show {
     @apply w-8 h-4 rounded-lg border border-stone-300 p-0.5 relative;
 }
 
-.active-color{
+.active-color {
     @apply border border-stone-800;
 }
-.active-color::before{
+
+.active-color::before {
     position: absolute;
     content: '';
     width: 100%;

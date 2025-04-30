@@ -1,6 +1,6 @@
 import Layout from "@/Layouts/Layout";
 import { Head } from "@inertiajs/react";
-import ProductsCard from "@/Components/ProductsCard";
+import ProductsCard from "@/Components/ProductsPgComponents/ProductsWrapper";
 
 const Search = ({ query, products })=>{
     return (

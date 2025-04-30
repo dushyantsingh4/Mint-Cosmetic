@@ -1,7 +1,7 @@
 import Layout from '../Layouts/Layout';
 import SortDropdown from '@/Components/ProductsPgComponents/SortDropdown';
 import FilterPanel from '@/Components/ProductsPgComponents/FilterPanel';
-import ProductsCard from '@/Components/ProductsCard';
+import ProductsWrapper from '@/Components/ProductsPgComponents/ProductsWrapper';
 import LongBanner from '@/Components/LongBanner';
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
@@ -54,7 +54,7 @@ const Products = ({ category, products, subCategory })=>{
                         <FilterPanel subCategory={subCategory} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}/>
                     </div>
                     <div className="product-menu">
-                        <ProductsCard products={filteredProducts}/>
+                        <ProductsWrapper products={filteredProducts}/>
                     </div>
                 </div>
             </section>
