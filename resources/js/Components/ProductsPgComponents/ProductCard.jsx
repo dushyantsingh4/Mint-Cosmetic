@@ -4,40 +4,27 @@ import { useEffect, useState } from "react";
 
 const ProductCart = ({ product }) => {
     const [selectedColor, setSelectedColor] = useState(product.colors?.[0]);
-    const [selectedImage, setSelectedImage] = useState(product.colorImage?.[0]?.images?.[0] || null);
+    const [selectedImage, setSelectedImage] = useState(product.colorImage || null);
 
     console.log(product);
 
-    useEffect(() => {
-        if (!selectedColor) return;
+    console.log(selectedImage);
     
-        const match = product.colorImage.find(
-            (entry) => entry.images?.[0]?.product_color_id === selectedColor.id
-        );
-    
-        if (match && match.images?.length) {
-            setSelectedImage(match.images);
-        } else {
-            setSelectedImage(null);
-        }
 
-    }, [selectedColor]);
-
-    // console.log(selectedImage);
     
     return (
         <>  
             <div className="product-card-img">
                 {/* Default image */}
                 <img
-                    src={`/storage/products/${selectedImage?.[0]?.image}`}
+                    src={`/storage/products/${selectedImage?.[0].image}`}
                     alt={product.slug}
                     className="w-full h-48 object-cover transition-opacity duration-300 ease-in-out"
                 />
                 {/* Hover image (second image) */}
                 {selectedImage?.[1]?.image && (
-                    <img
-                        src={`/storage/products/${selectedImage[1].image}`}
+                    <img    
+                        src={`/storage/products/${selectedImage?.[1].image}`}
                         alt={product.slug}
                         className="w-full h-48 object-cover absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out"
                     />

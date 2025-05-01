@@ -59,10 +59,11 @@ class FrontController extends Controller
         $products = Product::with([
             'colors',
             'productColors.color',
-            'productColors.previewImages'
+            'previewImages'
         ])
             ->whereIn('category_id', $allCategoryIds)
             ->get();
+
 
         $transformedProducts = $products->map(function ($product) {
             return [

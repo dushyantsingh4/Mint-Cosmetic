@@ -16,10 +16,14 @@ class ProductImage extends Model
         return $this->belongsTo(ProductColor::class, 'product_color_id');
     }
 
-    public function product()
-    {
-        return $this->productColor ? $this->productColor->product : null;
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
+
+    // public function product()
+    // {
+    //     return $this->productColor ? $this->productColor->product : null;
+    // }
 
     public function color()
     {
