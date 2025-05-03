@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('product_images', function (Blueprint $table) {
-            // Add product_color_id foreign key
-            $table->foreignId('product_color_id')
-                  ->nullable()
-                  ->constrained('product_colors')
-                  ->onDelete('cascade');
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_color_id')->constrained('product_colors')->onDelete('cascade');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('images');
     }
 };

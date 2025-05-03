@@ -10,15 +10,14 @@ class Color extends Model
         'name',
         'hex_code'
     ];
+
+    public function productColors()
+    {
+        return $this->hasMany(ProductColor::class);
+    }
     
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'product_colors');
     }
-
-    public function images(){
-        return $this->hasMany(ProductImage::class, 'product_color_id');
-    }
-
-
 }

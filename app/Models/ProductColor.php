@@ -20,12 +20,7 @@ class ProductColor extends Model
 
     public function images()
     {
-        return $this->hasMany(ProductImage::class, 'product_color_id');
-    }
-
-    public function previewImages()
-    {
-        return $this->hasMany(ProductImage::class)->orderBy('id')->limit(2);
+        return $this->hasMany(Image::class);
     }
 
 }

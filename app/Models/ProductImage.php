@@ -11,22 +11,12 @@ class ProductImage extends Model
         'product_color_id',
     ];
 
-    public function productColor()
-    {
-        return $this->belongsTo(ProductColor::class, 'product_color_id');
-    }
-
     public function product(){
         return $this->belongsTo(Product::class);
     }
 
-    // public function product()
-    // {
-    //     return $this->productColor ? $this->productColor->product : null;
-    // }
-
-    public function color()
+    public function productColors()
     {
-        return $this->productColor ? $this->productColor->color : null;
+        return $this->hasMany(ProductColor::class);
     }
 }
