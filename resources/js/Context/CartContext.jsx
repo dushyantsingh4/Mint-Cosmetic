@@ -5,10 +5,10 @@ export const CartContext = createContext();
 const cartReducer = (state, action)=>{
     switch (action.type){
         case 'ADD_ITEM':{
-            const existing = state.find(item => item.id === action.payload.id);
+            const existing = state.find(item => item.id === action.payload.id && item.color.id === action.payload.color.id);
             if (existing) {
                 return state.map(item =>
-                item.id === action.payload.id
+                item.id === action.payload.id && item.color.id === action.payload.color.id
                     ? { ...item, quantity: item.quantity + 1 }
                     : item
                 );
@@ -17,12 +17,12 @@ const cartReducer = (state, action)=>{
         }
 
         case "DECREMENT_ITEM": {
-            const targetItem = state.find(item => item.id === action.payload.id);
+            const targetItem = state.find(item => item.id === action.payload.id && item.color.id === action.payload.color.id);
         
             if (targetItem) {
                 if (targetItem.quantity > 1) {
                     return state.map(item =>
-                        item.id === action.payload.id
+                        item.id === action.payload.id && item.color.id === action.payload.color.id
                             ? { ...item, quantity: item.quantity - 1 }
                             : item
                     );
@@ -35,7 +35,7 @@ const cartReducer = (state, action)=>{
         }
 
         case "REMOVE_ITEM":
-            return state.filter(item => item.id !== action.payload.id);
+            return state.filter(item => item.id !== action.payload.id && item.color.id === action.payload.color.id);
 
         case "CLEAR_CART":
             return [];

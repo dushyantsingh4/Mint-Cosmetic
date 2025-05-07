@@ -2,17 +2,23 @@ import { CartContext } from "@/Context/CartContext";
 import { useContext } from "react";
 import { toast } from 'react-toastify';
 
-const ButtonAddCart = ({ product, selectedColor, colorImages }) => {
+const ButtonAddCart = ({ product, selectedColor}) => {
     
-    const cartContext = useContext(CartContext);
-    const addToCart = (product) => {
-        cartContext.dispatch({
+    const { dispatch } = useContext(CartContext);
+
+    const addToCart = (product, selectedColor) => {
+        console.log(product);
+        console.log(selectedColor);
+        dispatch({
             type: 'ADD_ITEM', payload: {
                 id: product.id,
                 name: product.product_name,
                 price: product.discount_price,
-                color: selectedColor,
-                image: colorImages?.[0]?.image || product.image,
+                color: {
+                    id: selectedColor.color_id,
+                    name: selectedColor.name,
+                    image: selectedColor.images[0].url,
+                },
                 quantity: 1
             }
         });
@@ -21,7 +27,7 @@ const ButtonAddCart = ({ product, selectedColor, colorImages }) => {
 
     return (
         <button
-            onClick={() => addToCart(product)}
+            onClick={() => addToCart(product, selectedColor)}
             className="add-to-cart-btn"
         >
             Add to Cart

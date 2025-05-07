@@ -57,32 +57,37 @@ class FrontController extends Controller
         $allCategoryIds = $childCategoryIds->push($parentCategory->id);
 
         $products = Product::with([
-            'colors',
             'productColors.color',
-            'previewImages'
+            'productColors.images',
+            'productColors.previewImages'
         ])
             ->whereIn('category_id', $allCategoryIds)
             ->get();
 
 
-        $transformedProducts = $products->map(function ($product) {
-            return [
-                'id' => $product->id,
-                'product_name' => $product->product_name,
-                'slug' => $product->slug,
-                'price' => $product->price,
-                'discount_price' => $product->discount_price,
-                'image' => $product->image,
-                'stock_quantity' => $product->stock_quantity,
-                'category_id' => $product->category_id,
-                'colors' => $product->colors,
-                'colorImage' => $product->productColors->map(function ($productColor) {
-                    return [
-                        'images' => $productColor->previewImages,
-                    ];
-                }),
-            ];
-        });
+            $transformedProducts = $products->map(function ($product) {
+                return [
+                    'id' => $product->id,
+                    'product_name' => $product->product_name,
+                    'slug' => $product->slug,
+                    'price' => $product->price,
+                    'discount_price' => $product->discount_price,
+                    'stock_quantity' => $product->stock_quantity,
+                    'category_id' => $product->category_id,
+                    'colors' => $product->productColors->map(function ($productColor) {
+                        return [
+                            'color_id' => $productColor->color->id,
+                            'name' => $productColor->color->name,
+                            'hex_code' => $productColor->color->hex_code,
+                            'images' => $productColor->previewImages->map(function ($image) {
+                                return [
+                                    'url' => $image->image,
+                                ];
+                            }),
+                        ];
+                    }),
+                ];
+            });
 
         return Inertia::render('Products', [
             'category' => $parentCategory,
@@ -94,18 +99,22 @@ class FrontController extends Controller
     public function productPage($slug)
     {
         $product = Product::with([
-            'colors',
-            'productColors.images',
-            'productColors.color'
+            'productColors.color',
+            'productColors.images'
         ])->where('slug', $slug)->firstOrFail();
 
         return Inertia::render('Product', [
             'product' => $product,
-            'colors' => $product->colors,
-            'colorImage' => $product->colors->map(function ($color) {
+            'colors' => $product->productColors->map(function ($productColor) {
                 return [
-                    'color' => $color,
-                    'images' => $color->images,
+                    'color_id' => $productColor->color->id,
+                    'name' => $productColor->color->name,
+                    'hex_code' => $productColor->color->hex_code,
+                    'images' => $productColor->images->map(function ($image) {
+                        return [
+                            'url' => $image->image,
+                        ];
+                    }),
                 ];
             }),
         ]);
@@ -119,5 +128,9 @@ class FrontController extends Controller
     public function loginPage()
     {
         return Inertia::render('Login');
+    }
+
+    public function signupPage(){
+        return Inertia::render('Signup');
     }
 }

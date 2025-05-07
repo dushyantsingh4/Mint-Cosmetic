@@ -172,3 +172,409 @@ select {
     left: 0;
     border: 2px solid #fff;
 }
+
+.signup-label{
+    @apply text-slate-800 text-sm;
+}
+
+#userName, #userDetail, #password, #confPassword{
+    @apply w-full border-b p-0 border-b-slate-200 focus:border-b-primary active:border-b-primary hover:border-b-slate-400 transition-all delay-75 placeholder:text-slate-400;
+}
+
+.account-ul{
+    @apply text-slate-600 mt-4;
+}
+.account-ul>li{
+    @apply py-2 px-4 rounded-lg transition-all duration-300 my-2 ease-in-out hover:bg-[#D7D2CB] hover:text-slate-950;
+}
+
+.account-ul>li.active{
+    @apply bg-[#24a7a7] text-white border border-[#1D9596] shadow-lg
+}
+
+/* Subscription  */
+
+
+/* Main Container */
+.beauty-subscription-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    font-family: "Segoe UI", Roboto, sans-serif;
+    border: 1px solid #e0f2f1;
+}
+
+/* Header Section */
+.subscription-header {
+    
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.subscription-header h2 {
+    color: #1d9596;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.subscription-header h2 i {
+    margin-right: 10px;
+    color: #4db6ac;
+}
+
+.subscription-header p {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Plans Section */
+.subscription-plans {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.plan-card {
+    flex: 1;
+    padding: 25px;
+    border: 1px solid #e0f2f1;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.plan-card.active {
+    border: 2px solid #1d9596;
+    background: #f0f9f9;
+}
+
+.plan-card h3 {
+    color: #1d9596;
+    font-size: 1.3rem;
+    margin: 0 0 15px;
+    position: relative;
+}
+
+.badge {
+    background: #ffd166;
+    color: #1d4d4e;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1d9596;
+    margin: 15px 0;
+}
+
+.price span {
+    font-size: 1rem;
+    color: #666;
+    font-weight: normal;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.plan-card ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.plan-card ul li i {
+    color: #81c9c9;
+    margin-right: 8px;
+}
+
+.select-btn {
+    width: 100%;
+    padding: 12px;
+    background: #e0f2f1;
+    color: #1d4d4e;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.plan-card.active .select-btn {
+    background: #1d9596;
+    color: white;
+}
+
+/* Payment Section */
+.payment-section h3 {
+    color: #1d9596;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.payment-section h3 i {
+    margin-right: 10px;
+    color: #4db6ac;
+}
+
+.payment-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-tabs button {
+    flex: 1;
+    padding: 12px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.payment-tabs button.active {
+    background: #e0f2f1;
+    color: #1d9596;
+}
+
+.payment-form {
+    display: none;
+}
+
+.payment-form.active {
+    display: block;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #e0f2f1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: #f0f9f9;
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 40px;
+    color: #81c9c9;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.upi-apps {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.upi-apps button {
+    flex: 1;
+    padding: 12px;
+    background: white;
+    border: 1px solid #e0f2f1;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.upi-apps button img {
+    height: auto;
+    width: 100px;
+}
+
+/* Order Summary */
+.order-summary {
+    background: #f0f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    border-top: 1px dashed #81c9c9;
+}
+
+.order-summary h4 {
+    margin: 0 0 15px;
+    color: #1d9596;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.summary-row.total {
+    font-weight: 700;
+    color: #1d9596;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #81c9c9;
+}
+
+/* Pay Button */
+.pay-now-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #1d9596, #0d7e7f);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pay-now-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(29, 149, 150, 0.3);
+}
+
+.secure-note {
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+
+.secure-note i {
+    color: #81c9c9;
+    margin-right: 5px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .beauty-subscription-page {
+        padding: 25px;
+        max-width: 95%;
+    }
+
+    .subscription-plans {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .plan-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .beauty-subscription-page {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .subscription-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .payment-tabs {
+        flex-direction: column;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .upi-apps {
+        flex-wrap: wrap;
+    }
+
+    .upi-apps button {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .beauty-subscription-page {
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .subscription-header {
+        margin-bottom: 30px;
+    }
+
+    .subscription-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .subscription-header p {
+        font-size: 0.9rem;
+    }
+
+    .plan-card {
+        padding: 15px;
+    }
+
+    .price {
+        font-size: 1.7rem;
+    }
+
+    .form-group input {
+        padding: 10px 12px 10px 35px;
+        font-size: 0.9rem;
+    }
+
+    .form-group i {
+        left: 12px;
+        top: 37px;
+    }
+
+    .pay-now-btn {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
+
+/* Subscription End   */

@@ -5,27 +5,21 @@ import Layout from "@/Layouts/Layout"
 import ButtonAddCart from "@/Components/ButtonAddCart";
 import ColorCombination from "@/Components/ColorCombination";
 import Accordion from "@/Components/Accordion";
-import ProductImagesWrapper from "@/Components/ProductImagesWrapper";
+import ProductImagesWrapper from "@/Components/ProductPgComponents/ProductImagesWrapper";
+import ProductDescription from "@/Components/ProductPgComponents/ProductDescription";
+import ReveiewSection from "@/Components/ProductPgComponents/ReviewSection";
 
-const Product = ({ product, colors, colorImage }) => {
+const Product = ({ product, colors }) => {
 
     const { cart, dispatch} = useContext(CartContext);
     const [selectedColor, setSelectedColor] = useState(colors[0] || null)
-    const [colorImages, setColorImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(product.image);
 
-    useEffect(()=>{
-        if (!selectedColor || !colorImage?.length) return;
-        const selectedColorImages = colorImage.find(color => color.color.id === selectedColor.id);
-        setColorImages(selectedColorImages.images);
-    }, [selectedColor])
+    console.log(selectedColor);
 
-    useEffect(() => {
-        if (colorImages.length > 0) {
-            setSelectedImage(colorImages[0].image);
-        }
-    }, [colorImages]);
-    
+    useEffect(()=>{
+        setSelectedImage(selectedColor.images[0].url)
+    }, [selectedColor])
 
 
     // cart functionality starts
@@ -37,15 +31,21 @@ const Product = ({ product, colors, colorImage }) => {
                 id: product.id,
                 name: product.product_name,
                 price: product.discount_price,
-                color: selectedColor,
-                image: colorImages?.[0]?.image || product.image,
+                color: {
+                    id: selectedColor.color_id,
+                    name: selectedColor.name,
+                    image: selectedColor.images[0].url,
+                },
                 quantity: 1
             } });
         }
 
     const decrementItem = (itemId)=>{
         dispatch({type: 'DECREMENT_ITEM', payload:{
-            id: itemId
+            id: itemId,
+            color: {
+                id: selectedColor.color_id,
+            }
         }})
     }
 
@@ -58,11 +58,11 @@ const Product = ({ product, colors, colorImage }) => {
                 <meta name="keywords" content={`${product.meta_keywords}`} />
             </Head>
             <section>
-                <div className="container mx-auto mt-28 mb-4 p-4 bg-white">
+                <div className="container mx-auto mt-28 p-4 bg-white">
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         <div className="flex sticky">
-                            <ProductImagesWrapper colorImages={colorImages} setSelectedImage={setSelectedImage} />
-                            <div className="flex justify-center items-center w-full">
+                            <ProductImagesWrapper colorImages={selectedColor.images} setSelectedImage={setSelectedImage} />
+                            <div className="flex justify-center items-start w-full">
                                 <img src={`/storage/products/${selectedImage}`} alt={product.slug} />
                             </div>
                         </div>
@@ -84,13 +84,23 @@ const Product = ({ product, colors, colorImage }) => {
                                         {item ? item.quantity : 1 }
                                         <button className="btn-qty-add" onClick={() => addToCart(product)}><i className="fa-solid fa-plus"></i></button>
                                     </div>
-                                    <ButtonAddCart colorImages={colorImages} selectedColor={selectedColor} product={product} />
+                                    <ButtonAddCart selectedColor={selectedColor} product={product} />
                                 </div>
                             </div>
-                            <Accordion title={"Product Description"} children={product.description}/>
+                            <Accordion title={"Product Description"} children={product.short_description}/>
+                            <div className="text-slate-500 px-2 my-6">
+                                <p><span className="font-semibold"><i className="fa-solid fa-truck-fast"></i></span> Free Shipping Available</p>
+                                <p><span className="font-semibold"><i className="fa-solid fa-arrow-rotate-left"></i></span> 10 Days Return/Replace Policy</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
+            <section>
+                <ProductDescription heading={product.desc_head} description={product.description}/>
+            </section>
+            <section>
+                <ReveiewSection />
             </section>
         </Layout>
     )

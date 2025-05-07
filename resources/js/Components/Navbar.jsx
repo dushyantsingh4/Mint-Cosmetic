@@ -1,10 +1,11 @@
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { route } from 'ziggy-js';
 import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { CartContext } from '@/Context/CartContext';
 
 const Navbar = () => {
+    const { auth } = usePage().props;
     const cartContext = useContext(CartContext);
     const [keyword, setKeyword] = useState('');
     const handleSearchForm = (e) => {
@@ -67,13 +68,13 @@ const Navbar = () => {
                         <li
                             className="flex items-center p-1 text-sm gap-x-2 pr-3 font-semibold border-b border-b-transparent hover:border-b-slate-600 text-slate-600 hover:text-slate-800">
                             <Link
-                                href={route('login')}
+                                href={auth.customer ? route('account') : route('login')}
                                 className="nav-link"
                             >
                                 <span>
                                     <i className="fa-regular fa-user"></i>
                                 </span>
-                                Login
+                                {auth.customer ? auth.customer.name : 'Login'}
                             </Link>
                         </li>
                     </ul>

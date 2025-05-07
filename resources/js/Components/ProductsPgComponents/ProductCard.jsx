@@ -4,27 +4,25 @@ import { useEffect, useState } from "react";
 
 const ProductCart = ({ product }) => {
     const [selectedColor, setSelectedColor] = useState(product.colors?.[0]);
-    const [selectedImage, setSelectedImage] = useState(product.colorImage || null);
+    const [selectedImage, setSelectedImage] = useState(selectedColor.images);
 
-    console.log(product);
-
-    console.log(selectedImage);
-    
-
+    useEffect(()=>{
+        setSelectedImage(selectedColor.images);
+    }, [selectedColor])
     
     return (
         <>  
             <div className="product-card-img">
                 {/* Default image */}
                 <img
-                    src={`/storage/products/${selectedImage?.[0].image}`}
+                    src={`/storage/products/${selectedImage?.[0].url}`}
                     alt={product.slug}
                     className="w-full h-48 object-cover transition-opacity duration-300 ease-in-out"
                 />
                 {/* Hover image (second image) */}
-                {selectedImage?.[1]?.image && (
+                {selectedImage?.[1]?.url && (
                     <img    
-                        src={`/storage/products/${selectedImage?.[1].image}`}
+                        src={`/storage/products/${selectedImage?.[1].url}`}
                         alt={product.slug}
                         className="w-full h-48 object-cover absolute top-0 left-0 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out"
                     />
@@ -48,7 +46,7 @@ const ProductCart = ({ product }) => {
                 </p>
             </div>
             <div className="flex justify-evenly mt-2">
-                <ButtonAddCart product={product} />
+                <ButtonAddCart selectedColor={selectedColor} product={product} />
                 <Link href={`/product/${product.slug}`} className="product-v-d-link">
                     View Details
                 </Link>
