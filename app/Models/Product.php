@@ -53,4 +53,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductColor::class);
     }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }

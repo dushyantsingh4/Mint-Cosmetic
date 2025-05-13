@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.head-title{
+    @apply font-funnel text-4xl text-center py-6 tracking-wider text-neutral-800 relative after:content-[''] after:block after:w-16 after:h-[3px] after:bg-primary after:mx-auto after:mt-2;
+}
+
 input[type="text"],
 input[type="password"] {
     @apply outline-none border-0 bg-transparent focus:outline-none focus:ring-0;
@@ -198,7 +208,7 @@ select {
 /* Main Container */
 .beauty-subscription-page {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 30px;
     background: #fff;
     border-radius: 16px;
@@ -241,7 +251,7 @@ select {
 .plan-card {
     flex: 1;
     padding: 25px;
-    border: 1px solid #e0f2f1;
+    border: 2px solid #e0f2f1;
     border-radius: 12px;
     transition: all 0.3s;
 }
@@ -298,20 +308,13 @@ select {
 }
 
 .select-btn {
-    width: 100%;
-    padding: 12px;
-    background: #e0f2f1;
-    color: #1d4d4e;
-    border: none;
+    @apply w-full p-3 bg-[#e0f2f1] text-secDark border-none cursor-pointer font-semibold;
     border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
     transition: all 0.3s;
 }
 
 .plan-card.active .select-btn {
-    background: #1d9596;
-    color: white;
+    @apply bg-secDark text-white;
 }
 
 /* Payment Section */
@@ -329,9 +332,7 @@ select {
 }
 
 .payment-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    @apply flex gap-[10px] mb-5;
 }
 
 .payment-tabs button {
@@ -576,5 +577,30 @@ select {
     }
 }
 
+.nav-dd-wrapper{
+    @apply absolute bg-transparent top-[55%] left-0 w-full hidden group-hover:flex py-12;
+}
+
+.nav-dd{
+    @apply flex items-start justify-start gap-4 w-full bg-white p-6 rounded;
+}
+
+.nav-dd-cat{
+    @apply w-1/2;
+}
+
+.nav-dd-head{
+    @apply font-semibold border-b-2 border-slate-900 w-1/2 mb-4;
+}
+
+.nav-dd-li{
+    @apply text-slate-700 hover:text-slate-800 font-normal;
+}
+
+.nav-dd-li>li{
+    @apply my-3 w-1/2 border-b border-transparent hover:border-b-slate-800;
+    font-size: 14px;
+    line-height: 1.1rem;
+}
 
 /* Subscription End   */

@@ -13,8 +13,8 @@ export default function Subscription() {
         Monthly: {
             price: 799,
             features: [
-                "1 Premium Product",
-                "15% Off All Orders",
+                "Exclusive Deals",
+                "Early Access Deals",
                 "Free Shipping",
             ],
             term: "/month",
@@ -23,7 +23,7 @@ export default function Subscription() {
             price: 7999,
             features: [
                 "12 Premium Products",
-                "25% Off All Orders",
+                "Early Access Deals + 25% Off All Orders",
                 "Free Shipping + Gift",
             ],
             term: "/year",
@@ -50,7 +50,7 @@ export default function Subscription() {
         <>
             <Layout>
                 <Head title="Subscription" />
-                <LongBanner imagePath={``} />
+                <LongBanner imagePath={`/banner/sub-banner.jpeg`} />
 
                 <section>
                     <div className="container">
@@ -71,11 +71,10 @@ export default function Subscription() {
                                     ([plan, details]) => (
                                         <div
                                             key={plan}
-                                            className={`plan-card ${
-                                                selectedPlan === plan
+                                            className={`plan-card ${selectedPlan === plan
                                                     ? "active"
                                                     : ""
-                                            }`}
+                                                }`}
                                             onClick={() =>
                                                 setSelectedPlan(plan)
                                             }
@@ -112,7 +111,7 @@ export default function Subscription() {
                                 )}
                             </div>
 
-                            <div className="payment-section">
+                            {/* <div className="payment-section">
                                 <h3>
                                     <i className="fas fa-credit-card"></i>{" "}
                                     Payment Method
@@ -126,7 +125,7 @@ export default function Subscription() {
                                                     key={method}
                                                     className={
                                                         activePaymentMethod ===
-                                                        method
+                                                            method
                                                             ? "active"
                                                             : ""
                                                     }
@@ -137,14 +136,13 @@ export default function Subscription() {
                                                     }
                                                 >
                                                     <i
-                                                        className={`fas fa-${
-                                                            method === "Card"
+                                                        className={`fas fa-${method === "Card"
                                                                 ? "credit-card"
                                                                 : method ===
-                                                                  "UPI"
-                                                                ? "mobile-alt"
-                                                                : "university"
-                                                        }`}
+                                                                    "UPI"
+                                                                    ? "mobile-alt"
+                                                                    : "university"
+                                                            }`}
                                                     ></i>{" "}
                                                     {method}
                                                 </button>
@@ -152,13 +150,11 @@ export default function Subscription() {
                                         )}
                                     </div>
 
-                                    {/* Card Payment Form */}
                                     <div
-                                        className={`payment-form ${
-                                            activePaymentMethod === "Card"
+                                        className={`payment-form ${activePaymentMethod === "Card"
                                                 ? "active"
                                                 : ""
-                                        }`}
+                                            }`}
                                     >
                                         <div className="form-group">
                                             <label>Card Number</label>
@@ -196,13 +192,11 @@ export default function Subscription() {
                                         </div>
                                     </div>
 
-                                    {/* UPI Payment Form */}
                                     <div
-                                        className={`payment-form ${
-                                            activePaymentMethod === "UPI"
+                                        className={`payment-form ${activePaymentMethod === "UPI"
                                                 ? "active"
                                                 : ""
-                                        }`}
+                                            }`}
                                     >
                                         <div className="upi-apps">
                                             <button>
@@ -233,14 +227,12 @@ export default function Subscription() {
                                         </div>
                                     </div>
 
-                                    {/* Net Banking Form (would be similar) */}
                                     <div
-                                        className={`payment-form ${
-                                            activePaymentMethod ===
-                                            "Net Banking"
+                                        className={`payment-form ${activePaymentMethod ===
+                                                "Net Banking"
                                                 ? "active"
                                                 : ""
-                                        }`}
+                                            }`}
                                     >
                                         <div className="form-group">
                                             <label>Select Bank</label>
@@ -278,6 +270,7 @@ export default function Subscription() {
                                     </div>
                                 </div>
 
+                            </div> */}
                                 <button className="pay-now-btn">
                                     <i className="fas fa-lock"></i> Pay Securely
                                 </button>
@@ -285,7 +278,6 @@ export default function Subscription() {
                                     <i className="fas fa-shield-alt"></i> Your
                                     payment is encrypted and secure.
                                 </p>
-                            </div>
                         </div>
                     </div>
                 </section>

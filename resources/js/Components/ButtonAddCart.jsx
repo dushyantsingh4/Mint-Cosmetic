@@ -2,7 +2,7 @@ import { CartContext } from "@/Context/CartContext";
 import { useContext } from "react";
 import { toast } from 'react-toastify';
 
-const ButtonAddCart = ({ product, selectedColor}) => {
+const ButtonAddCart = ({ product, selectedColor, showViewLink=true}) => {
     
     const { dispatch } = useContext(CartContext);
 
@@ -28,7 +28,7 @@ const ButtonAddCart = ({ product, selectedColor}) => {
     return (
         <button
             onClick={() => addToCart(product, selectedColor)}
-            className="add-to-cart-btn"
+            className={`add-to-cart-btn ${showViewLink ? '' : 'w-full mx-4'}`}
         >
             Add to Cart
         </button>

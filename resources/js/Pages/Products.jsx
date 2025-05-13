@@ -6,9 +6,15 @@ import LongBanner from '@/Components/LongBanner';
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 
-const Products = ({ category, products, subCategory })=>{
+const Products = ({ category, products, subCategory, subProduct })=>{
     const [sortBy, setSortBy] = useState('featured');
-    const [selectedCategories, setSelectedCategories] = useState([]);   
+    const [selectedCategories, setSelectedCategories] = useState(() => {
+        if (subProduct) {
+            const sub = subCategory.find(cat => cat.slug === subProduct);
+            return sub ? [String(sub.id)] : [];
+        }
+        return [];
+    });
 
     const sortedProducts = [...products].sort((a, b) => {
         switch (sortBy) {
@@ -51,10 +57,10 @@ const Products = ({ category, products, subCategory })=>{
                 <div className="grid lg:grid-cols-[300px_1fr] gap-4 w-full">
                     <div className="bg-slate-100 py-5 px-9 sticky">
                         <h3 className='font-semibold text-slate-800 mb-2'>Filter Results</h3>
-                        <FilterPanel subCategory={subCategory} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}/>
+                        <FilterPanel subCategory={subCategory} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} subProduct={subProduct}/>
                     </div>
                     <div className="product-menu">
-                        <ProductsWrapper products={filteredProducts}/>
+                        <ProductsWrapper products={filteredProducts} />
                     </div>
                 </div>
             </section>

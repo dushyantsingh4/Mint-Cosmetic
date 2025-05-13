@@ -13,7 +13,8 @@ const SwiperWrapper = ({
     loop = true,
     showNavigation = true,
     showPagination = true,
-    className = ''
+    className = '',
+    breakpoints = {} // <-- accept breakpoints
 }) => {
     return (
         <Swiper
@@ -24,6 +25,7 @@ const SwiperWrapper = ({
             pagination={showPagination ? { clickable: true } : false}
             autoplay={autoplay ? { delay: 3000 } : false}
             loop={loop}
+            breakpoints={breakpoints}
             className={className}
         >
             {items.map((item, index) => (

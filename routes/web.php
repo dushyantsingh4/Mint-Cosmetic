@@ -27,6 +27,10 @@ Route::controller(FrontController::class)->group(function(){
     // Products Page (Multiple Products)
     Route::get('/products/{slug}', 'productsPage')->name('products');
 
+    // Products Page (Multiple Sub Products)
+
+    Route::get('/products/{slug}/{productSlug}', 'productsPage')->name('subProducts');
+
     // Product Page (Single Product)
     Route::get('/product/{slug}', 'productPage')->name('product');
 
@@ -44,6 +48,8 @@ Route::controller(FrontController::class)->group(function(){
 
     // SignUp Page
     Route::get('/signup', 'signupPage')->name('signup');
+
+    Route::get('/gifting', 'giftingPage')->name('gifting');
 });
 
 // Route without auth middleware

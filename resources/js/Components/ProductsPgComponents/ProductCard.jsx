@@ -2,7 +2,7 @@ import { Link } from "@inertiajs/react";
 import ButtonAddCart from "../ButtonAddCart";
 import { useEffect, useState } from "react";
 
-const ProductCart = ({ product }) => {
+const ProductCard = ({ product, showViewLink = true  }) => {
     const [selectedColor, setSelectedColor] = useState(product.colors?.[0]);
     const [selectedImage, setSelectedImage] = useState(selectedColor.images);
 
@@ -28,15 +28,19 @@ const ProductCart = ({ product }) => {
                     />
                 )}
             </div>
-            <div className="p-2">
-                <h3 className="text-slate-800 font-medium text-lg">{product.product_name}</h3>
+            <div className="p-2 h-44 flex flex-col justify-between">
+                <div>
+                <Link href={`/product/${product.slug}`} ><h3 className="text-slate-800 font-medium text-lg">{product.product_name}</h3></Link>
                 <p className="text-slate-700">₹{product.discount_price} <span className='text-sm font-light line-through text-slate-400 ml-2'>₹{product.price}</span></p>
+                </div>
+                <div>
+
                 <div>
                     {product.colors.map((color, index) => (
                         <button key={index}
-                            onClick={() => setSelectedColor(color)}
-                            className={`color-show`}
-                            style={{ backgroundColor: color.hex_code }}>
+                        onClick={() => setSelectedColor(color)}
+                        className={`color-show`}
+                        style={{ backgroundColor: color.hex_code }}>
                         </button>
                     ))}
                 </div>
@@ -44,15 +48,17 @@ const ProductCart = ({ product }) => {
                 <p className={`font-extrathin text-sm ${product.stock_quantity > 0 ? 'text-slate-600' : 'text-red-600'}`}>
                     {product.stock_quantity > 0 ? 'In-Stock' : 'Out of Stock'}
                 </p>
+                    </div>
             </div>
-            <div className="flex justify-evenly mt-2">
-                <ButtonAddCart selectedColor={selectedColor} product={product} />
+            <div className="flex justify-evenly my-2">
+                <ButtonAddCart selectedColor={selectedColor} product={product} showViewLink={showViewLink}/>
+                {showViewLink && 
                 <Link href={`/product/${product.slug}`} className="product-v-d-link">
                     View Details
-                </Link>
+                </Link>}
             </div>
         </>
     )
 }
 
-export default ProductCart;
+export default ProductCard;

@@ -13,11 +13,14 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['"Roboto Condensed"', ...defaultTheme.fontFamily.sans],
+                yellowtail: ['"Yellowtail"', 'cursive'],
+                funnel: ['"Funnel Display"', 'sans-serif'],
             },
             colors: {
                 primary: "#1D9596",
                 priDark: "#0A4B51",
+                secDark: "#1d9596",
                 secondary: "#67C761",
                 bodyBack: "#EEEEFF",
                 silver: "#DBDFE0"

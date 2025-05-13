@@ -5,7 +5,8 @@ import { toast } from 'react-toastify';
 import { CartContext } from '@/Context/CartContext';
 
 const Navbar = () => {
-    const { auth } = usePage().props;
+    // const { general } = usePage().props;
+    const { auth, general } = usePage().props;
     const cartContext = useContext(CartContext);
     const [keyword, setKeyword] = useState('');
     const handleSearchForm = (e) => {
@@ -22,7 +23,7 @@ const Navbar = () => {
         <nav className="nav">
             <div className="container flex flex-wrap items-center justify-between mx-auto text-slate-800">
                 <Link href={route('/')} className="nav-link">
-                    Mint Cosmetic
+                <div className="h-14 w-14"><img src={`/storage/logo/${general.logo}`} alt="logo" /></div>
                 </Link>
                 <div className="hidden lg:block">
                     <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -33,12 +34,55 @@ const Navbar = () => {
                             </form>
                         </li>
                         <li className="group flex items-center p-1 text-sm gap-x-2 font-semibold border-b border-b-transparent hover:border-b-slate-600 text-slate-600 hover:text-slate-800">
-                            <a href="#" className="flex items-center">Categories</a>
-                        </li>
-                        <li className="flex items-center p-1 text-sm gap-x-2 font-semibold border-b border-b-transparent hover:border-b-slate-600 text-slate-600 hover:text-slate-800">
-                            <Link href={route('subscription')} className="nav-link">
-                                Offers
-                            </Link>
+                            <a className="flex items-center">Categories</a>
+                            <div className="nav-dd-wrapper">
+                                <div className='nav-dd'>
+                                <div className='nav-dd-cat'>
+                                        <p className='nav-dd-head'>LIPS</p>
+                                        <ul className='nav-dd-li'>
+                                            <li><Link href={route('subProducts', { slug: 'lips', productSlug: 'lipstick' })}> Lipstick</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'lips', productSlug: 'liquid-lipstick' })}> Liquid Lipstick</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'lips', productSlug: 'lip-gloss' })}> Lip Gloss</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'lips', productSlug: 'lip-liner' })}> Lip Liner</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'lips', productSlug: 'lip-care' })}> Lip Care</Link></li>
+                                            <li><Link href={route('products', { slug: 'lips' })}>View All</Link></li>
+                                        </ul>
+                                    </div>
+                                    <div className='nav-dd-cat'>
+                                        <p className='nav-dd-head'>FACE</p>
+                                        <ul className='nav-dd-li'>
+                                            <li><Link href={route('subProducts', { slug: 'face', productSlug: 'foundation' })}> Foundation</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'face', productSlug: 'concealer' })}> Concealer</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'face', productSlug: 'blush' })}> Blush</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'face', productSlug: 'compact' })}> Compact</Link></li>
+                                            <li><Link href={route('products', { slug: 'face' })}>View All</Link></li>
+                                        </ul>
+                                    </div>
+                                    <div className='nav-dd-cat'>
+                                        <p className='nav-dd-head'>SKIN</p>
+                                        <ul className='nav-dd-li'>
+                                            <li><Link href={route('subProducts', { slug: 'skin', productSlug: 'serum' })}> Serum</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'skin', productSlug: 'moisturiser' })}> Moisteriser</Link></li>
+                                            <li><Link href={route('products', { slug: 'skin' })}>View All</Link></li>
+                                        </ul>
+                                    </div>
+                                    <div className='nav-dd-cat'>
+                                        <p className='nav-dd-head'>EYES</p>
+                                        <ul className='nav-dd-li'>
+                                            <li><Link href={route('subProducts', { slug: 'eyes', productSlug: 'mascara' })}> Mascara</Link></li>
+                                            <li><Link href={route('subProducts', { slug: 'eyes', productSlug: 'eyeliner' })}> Eyeliner</Link></li>
+                                            <li><Link href={route('products', { slug: 'eyes' })}>View All</Link></li>
+                                        </ul>
+                                    </div>
+                                    <div className='nav-dd-cat'>
+                                        <p className='nav-dd-head'>NAILS</p>
+                                        <ul className='nav-dd-li'>
+                                            <li><Link href={route('subProducts', { slug: 'nails', productSlug: 'nail-polish' })}> Nail Polish</Link></li>
+                                            <li><Link href={route('products', { slug: 'nails' })}>View All</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <li
                             className="flex items-center p-1 text-sm gap-x-2 font-semibold border-b border-b-transparent hover:border-b-slate-600 text-slate-600 hover:text-slate-800">
@@ -48,7 +92,7 @@ const Navbar = () => {
                         </li>
                         <li
                             className="flex items-center p-1 text-sm gap-x-2 pr-3 font-semibold border-b border-b-transparent hover:border-b-slate-600 text-slate-600 hover:text-slate-800">
-                            <Link href={route('subscription')} className="nav-link">
+                            <Link href={route('gifting')} className="nav-link">
                                 Gifting
                             </Link>
                         </li>
