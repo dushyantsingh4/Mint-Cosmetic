@@ -7,8 +7,6 @@ const ButtonAddCart = ({ product, selectedColor, showViewLink=true}) => {
     const { dispatch } = useContext(CartContext);
 
     const addToCart = (product, selectedColor) => {
-        console.log(product);
-        console.log(selectedColor);
         dispatch({
             type: 'ADD_ITEM', payload: {
                 id: product.id,

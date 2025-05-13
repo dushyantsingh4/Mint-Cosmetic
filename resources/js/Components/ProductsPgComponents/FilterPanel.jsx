@@ -9,8 +9,6 @@ const FilterPanel = ({ subCategory, selectedCategories, setSelectedCategories, s
         }
     };
 
-    console.log(subCategory)
-    console.log(subProduct)
 
     return (
         <>
@@ -32,7 +30,7 @@ const FilterPanel = ({ subCategory, selectedCategories, setSelectedCategories, s
                 ))}
             </div>
             <hr />
-            <p>Colors:</p>
+            {/* <p>Colors:</p> */}
         </>
     );
 };

@@ -5,7 +5,6 @@ import Review from "./Reviews";
 import Reviews from "./Reviews";
 
 export default function ReveiewSection({ reviews, productId }){
-    console.log(reviews);
     const {auth} = usePage().props;
     const [showForm, setShowForm] = useState(false);
     

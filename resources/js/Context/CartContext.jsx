@@ -3,6 +3,7 @@ import React, { createContext, useReducer, useEffect} from "react";
 export const CartContext = createContext();
 
 const cartReducer = (state, action)=>{
+    console.log(action.payload);
     switch (action.type){
         case 'ADD_ITEM':{
             const existing = state.find(item => item.id === action.payload.id && item.color.id === action.payload.color.id);
@@ -35,12 +36,12 @@ const cartReducer = (state, action)=>{
         }
 
         case "REMOVE_ITEM":
-            return state.filter(item => item.id !== action.payload.id && item.color.id === action.payload.color.id);
+            return state.filter(item => !(item.id === action.payload.id && item.color.id === action.payload.color.id));
 
         case "CLEAR_CART":
             return [];
 
-        default:
+        default:  
             return state;
     }
 }

@@ -15,7 +15,7 @@ const Cart = ()=>{
                         <div className="w-8/12">
                             <CartItem />
                             <div className="flex justify-center">
-                                <Link href={route('/')} className="link-cont-shop">Continue Shopping</Link>
+                                <Link href={route('products', {slug: 'new-launches'})} className="link-cont-shop">Continue Shopping</Link>
                             </div>
                         </div>
                         <div className="w-4/12">

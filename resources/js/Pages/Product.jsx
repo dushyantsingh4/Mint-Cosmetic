@@ -8,14 +8,13 @@ import Accordion from "@/Components/Accordion";
 import ProductImagesWrapper from "@/Components/ProductPgComponents/ProductImagesWrapper";
 import ProductDescription from "@/Components/ProductPgComponents/ProductDescription";
 import ReveiewSection from "@/Components/ProductPgComponents/ReviewSection";
+import DeliveryCheck from "@/Components/ProductPgComponents/DeliveryCheck";
 
 const Product = ({ product, colors, reviews }) => {
 
     const { cart, dispatch } = useContext(CartContext);
     const [selectedColor, setSelectedColor] = useState(colors[0] || null)
     const [selectedImage, setSelectedImage] = useState(product.image);
-
-    console.log(selectedColor);
 
     useEffect(() => {
         setSelectedImage(selectedColor.images[0].url)
@@ -82,6 +81,7 @@ const Product = ({ product, colors, reviews }) => {
                                         setSelectedColor={setSelectedColor}
                                     />
                                 )}
+                                <DeliveryCheck />
                                 <div className="my-6">
                                     <div className="flex gap-2">
                                         <div className="text-sm">

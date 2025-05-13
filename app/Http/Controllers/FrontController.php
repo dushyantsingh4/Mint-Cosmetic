@@ -142,23 +142,40 @@ class FrontController extends Controller
 
     public function productsPage($slug, $productSlug = null)
     {
-        $currentCategory = Category::where('slug', $slug)->firstOrFail();
+        $childCategorys = collect();
+        if($slug == 'new-launches'){
+            $parentCategory = [
+                'category_name' => 'New Launches',
+                'image' => 'new1.jpeg'
+            ];
+            $childCategorys = Category::whereNotNull('parent_id')->get();
+            $products = Product::with([
+                'productColors.color',
+                'productColors.images',
+                'productColors.previewImages'
+            ])
+            ->orderBy('id', 'desc')
+                ->get();
+        } else {
 
-        $parentCategory = Category::find($currentCategory->parent_id) ?? $currentCategory;
-
-        $childCategoryIds = Category::where('parent_id', $parentCategory->id)->pluck('id');
-
-        $childCategorys = Category::whereIn('id', $childCategoryIds)->get();
-
-        $allCategoryIds = $childCategoryIds->push($parentCategory->id);
-
-        $products = Product::with([
-            'productColors.color',
-            'productColors.images',
-            'productColors.previewImages'
-        ])
-            ->whereIn('category_id', $allCategoryIds)
-            ->get();
+            $currentCategory = Category::where('slug', $slug)->firstOrFail();
+            
+            $parentCategory = Category::find($currentCategory->parent_id) ?? $currentCategory;
+            
+            $childCategoryIds = Category::where('parent_id', $parentCategory->id)->pluck('id');
+            
+            $childCategorys = Category::whereIn('id', $childCategoryIds)->get();
+            
+            $allCategoryIds = $childCategoryIds->push($parentCategory->id);
+            
+            $products = Product::with([
+                'productColors.color',
+                'productColors.images',
+                'productColors.previewImages'
+                ])
+                ->whereIn('category_id', $allCategoryIds)
+                ->get();
+            }
 
 
             $transformedProducts = $products->map(function ($product) {

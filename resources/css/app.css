@@ -602,5 +602,14 @@ select {
     font-size: 14px;
     line-height: 1.1rem;
 }
+.delivery-inp-container{
+    @apply my-3 border border-slate-300 w-fit rounded-md overflow-hidden;
+}
 
-/* Subscription End   */
+.delivery-inp-container>input[type='text']{
+    @apply py-0 px-2;
+}
+
+.submit-btn{
+    @apply w-16 h-full bg-emerald-500 hover:bg-emerald-600 text-white py-2;
+}

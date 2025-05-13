@@ -11,8 +11,8 @@ const BreakUp = ()=>{
                 {cart.map((item, index) =>{ return(
                     <div key={index} className="my-4">
                         <div className="flex justify-between w-full items-center">
-                            <p>{item.name} X {item.quantity} <span className="text-xs">(1 unit: {item.price})</span></p>
-                            <p>₹ {(item.price * item.quantity).toFixed(2)}</p>
+                            <p className="mr-2">{item.name} X {item.quantity}</p>
+                            <p className="text-nowrap">₹ {(item.price * item.quantity).toFixed(2)}</p>
                         </div>
                     </div>
                 )})}
