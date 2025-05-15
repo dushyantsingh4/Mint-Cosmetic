@@ -1,4 +1,4 @@
-export default function Reviews({ reviews }) {
+export default function Reviews({ reviews, averageRating }) {
     return (
         <>
         {reviews.map((review, index) => (
@@ -9,13 +9,16 @@ export default function Reviews({ reviews }) {
                     </div>
                     <div className="w-3/4 my-4">
                         <div className="flex justify-between">
-                            <p className="text-gold font-thin text-sm mb-2">
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-solid fa-star"></i>
-                                <i className="fa-regular fa-star"></i>
-                            </p>
+                        <p className="text-gold font-thin text-sm mb-2">
+                        {[...Array(5)].map((_, index) => {
+                            return (
+                            <i
+                                key={index}
+                                className={`fa-${index < averageRating ? 'solid' : 'regular'} fa-star`}
+                            ></i>
+                            );
+                        })}
+                        </p>
                             <p className="text-xs font-thin text-slate-500">{review.created_at}</p>
                         </div>
                         <p className="text-lg font-bold text-slate-800">{review.title}</p>

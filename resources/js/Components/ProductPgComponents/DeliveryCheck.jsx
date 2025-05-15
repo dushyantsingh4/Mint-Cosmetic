@@ -25,7 +25,7 @@ export default function DeliveryCheck() {
                         onChange={inputChange}
                         placeholder="Enter 6-digit pincode"
                     />
-                    <button className="submit-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button className="submit-btn"><i className="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>
         </div>

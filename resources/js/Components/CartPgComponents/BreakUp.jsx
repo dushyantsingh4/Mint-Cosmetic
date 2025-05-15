@@ -1,8 +1,11 @@
 import { CartContext } from "@/Context/CartContext";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { useContext } from "react";
+import { route } from "ziggy-js";
+import ProceedToPayment from "./ProceedToPayment";
 
 const BreakUp = ()=>{
+    const { auth } = usePage().props;
     const { cart } = useContext(CartContext);
     return(
         <div className="bg-stone-100 border border-stone-200 mt-8 mx-2 px-2 py-3 rounded">
@@ -30,7 +33,9 @@ const BreakUp = ()=>{
                 <p>₹ {cart.reduce((total, item) => total + (parseFloat(item.price) * item.quantity), 0).toFixed(2)}</p>
             </div>
             <div>
-                <Link href={'#'} className="link-proceed">Proceed to Payment</Link>
+            {cart.length > 0 &&
+            <ProceedToPayment />
+            }
             </div>
         </div>
     )

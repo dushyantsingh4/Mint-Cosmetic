@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
 import { CartContext } from "@/Context/CartContext";
 import { Head } from "@inertiajs/react"
 import Layout from "@/Layouts/Layout"
@@ -11,10 +11,17 @@ import ReveiewSection from "@/Components/ProductPgComponents/ReviewSection";
 import DeliveryCheck from "@/Components/ProductPgComponents/DeliveryCheck";
 
 const Product = ({ product, colors, reviews }) => {
+    console.log(reviews);
 
     const { cart, dispatch } = useContext(CartContext);
     const [selectedColor, setSelectedColor] = useState(colors[0] || null)
     const [selectedImage, setSelectedImage] = useState(product.image);
+
+    const averageRating = useMemo(() => {
+        if (!reviews || reviews.length === 0) return 0;
+      
+        return reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
+      }, [reviews]);
 
     useEffect(() => {
         setSelectedImage(selectedColor.images[0].url)
@@ -73,7 +80,7 @@ const Product = ({ product, colors, reviews }) => {
                             <div className="px-4">
                                 <h1 className="text-2xl">{product.product_name}</h1>
                                 <p className="text-lg"><span className="line-through mr-2 text-base">Rs. {product.price}</span> Rs. {product.discount_price}</p>
-                                <p className="text-gold text-sm"><i className="fa-solid fa-star"></i> 4.8 </p>
+                                <p className="text-gold text-sm"><i className="fa-solid fa-star"></i> {averageRating} </p>
                                 {colors?.length > 0 && (
                                     <ColorCombination
                                         colors={colors}
@@ -106,7 +113,7 @@ const Product = ({ product, colors, reviews }) => {
                 <ProductDescription heading={product.desc_head} description={product.description} />
             </section>
             <section>
-                <ReveiewSection reviews={reviews} productId={product.id}/>
+                <ReveiewSection reviews={reviews} productId={product.id} averageRating={averageRating}/>
             </section>
         </Layout>
     )

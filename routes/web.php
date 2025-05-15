@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -65,3 +64,15 @@ Route::controller(CustomerController::class)
         Route::get('/account', 'accountPage')->name('account');
         Route::get('/logout', 'customerLogout')->name('customerLogout');
     });
+
+
+Route::middleware(['auth:customers'])->group(function () {
+    Route::post('/add-cart', [CheckoutController::class, 'addCart'])->name('addCart');
+    Route::get('/shipping', [CheckoutController::class, 'shipping'])->name('shipping');
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+});
+
+// Route::get('/payment', [CheckoutController::class, 'handleCallback'])->name('payment');
+
+Route::post('/payment/verify', [CheckoutController::class, 'verifyPayment'])
+    ->name('payment.verify');
